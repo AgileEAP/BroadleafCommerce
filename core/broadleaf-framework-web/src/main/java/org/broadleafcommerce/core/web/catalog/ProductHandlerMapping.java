@@ -37,25 +37,25 @@ import org.broadleafcommerce.core.catalog.service.CatalogService;
  * @see CatalogService
  */
 public class ProductHandlerMapping extends BLCAbstractHandlerMapping {
-	
-	private String controllerName="blProductController";
-	
+    
+    private String controllerName="blProductController";
+    
     @Resource(name = "blCatalogService")
     private CatalogService catalogService;
     
     public static final String CURRENT_PRODUCT_ATTRIBUTE_NAME = "currentProduct";
 
-	@Override
-	protected Object getHandlerInternal(HttpServletRequest request)
-			throws Exception {		
-		BroadleafRequestContext context = BroadleafRequestContext.getBroadleafRequestContext();
-		Product product = catalogService.findProductByURI(context.getRequestURIWithoutContext());
+    @Override
+    protected Object getHandlerInternal(HttpServletRequest request)
+            throws Exception {      
+        BroadleafRequestContext context = BroadleafRequestContext.getBroadleafRequestContext();
+        Product product = catalogService.findProductByURI(context.getRequestURIWithoutContext());
  
         if (product != null) {
             context.getRequest().setAttribute(CURRENT_PRODUCT_ATTRIBUTE_NAME, product);
-        	return controllerName;
+            return controllerName;
         } else {
-        	return null;
+            return null;
         }
-	}
+    }
 }

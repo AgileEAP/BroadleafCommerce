@@ -46,33 +46,33 @@ import java.util.Map;
  * @see BroadleafPageController
  */
 public class PageHandlerMapping extends BLCAbstractHandlerMapping {
-	
-	private String controllerName="blPageController";
+    
+    private String controllerName="blPageController";
     public static final String BLC_RULE_MAP_PARAM = "blRuleMap";
 
     // The following attribute is set in BroadleafProcessURLFilter
     public static final String REQUEST_DTO = "blRequestDTO";
-	
+    
     @Resource(name = "blPageService")
     private PageService pageService;
     
     public static final String PAGE_ATTRIBUTE_NAME = "BLC_PAGE";        
 
-	@Override
-	protected Object getHandlerInternal(HttpServletRequest request)
-			throws Exception {		
-		BroadleafRequestContext context = BroadleafRequestContext.getBroadleafRequestContext();
+    @Override
+    protected Object getHandlerInternal(HttpServletRequest request)
+            throws Exception {      
+        BroadleafRequestContext context = BroadleafRequestContext.getBroadleafRequestContext();
         PageDTO page = pageService.findPageByURI(context.getSandbox(), context.getLocale(), context.getRequestURIWithoutContext(), buildMvelParameters(request), context.isSecure());
         
         if (page != null && ! (page instanceof NullPageDTO)) {
             context.getRequest().setAttribute(PAGE_ATTRIBUTE_NAME, page);
-        	return controllerName;
+            return controllerName;
         } else {
-        	return null;
+            return null;
         }
-	}
-	
-	 /**
+    }
+    
+     /**
      * MVEL is used to process the content targeting rules.
      *
      *
