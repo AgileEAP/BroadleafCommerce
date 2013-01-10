@@ -50,7 +50,7 @@ public class EntityConfiguration {
     }
     
     public String[] getEntityBeanNames() {
-    	return applicationcontext.getBeanDefinitionNames();
+        return applicationcontext.getBeanDefinitionNames();
     }
 
     public <T> Class<T> lookupEntityClass(String beanId, Class<T> resultClass) {
@@ -84,12 +84,12 @@ public class EntityConfiguration {
         return bean;
     }
 
-	public Resource[] getEntityContexts() {
-		return entityContexts;
-	}
+    public Resource[] getEntityContexts() {
+        return entityContexts;
+    }
 
-	public void setEntityContexts(Resource[] entityContexts) {
-		this.entityContexts = entityContexts;
-		applicationcontext = new GenericXmlApplicationContext(entityContexts);
-	}
+    public void setEntityContexts(Resource[] entityContexts) {
+        this.entityContexts = entityContexts;
+        applicationcontext = new GenericXmlApplicationContext(entityContexts);
+    }
 }

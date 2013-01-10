@@ -44,7 +44,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Deprecated
 public class ProductSkuImpl extends ProductImpl implements ProductSku {
 
-	private static final Log LOG = LogFactory.getLog(ProductSkuImpl.class);
+    private static final Log LOG = LogFactory.getLog(ProductSkuImpl.class);
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
     
@@ -53,61 +53,61 @@ public class ProductSkuImpl extends ProductImpl implements ProductSku {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region="blStandardElements")
     protected Sku sku;
 
-	/* (non-Javadoc)
-	 * @see org.broadleafcommerce.core.catalog.domain.ProductSku#getSku()
-	 */
+    /* (non-Javadoc)
+     * @see org.broadleafcommerce.core.catalog.domain.ProductSku#getSku()
+     */
     public Sku getSku() {
-		return sku;
-	}
+        return sku;
+    }
 
-	/* (non-Javadoc)
-	 * @see org.broadleafcommerce.core.catalog.domain.ProductSku#setSku(org.broadleafcommerce.core.catalog.domain.Sku)
-	 */
-	public void setSku(Sku sku) {
-		this.sku = sku;
-	}
-	
-	public Sku getDefaultSku() {
-		return sku;
-	}
-	
-	public void setDefaultSku(Sku defaultSku){
-		this.sku = defaultSku;
-	}
+    /* (non-Javadoc)
+     * @see org.broadleafcommerce.core.catalog.domain.ProductSku#setSku(org.broadleafcommerce.core.catalog.domain.Sku)
+     */
+    public void setSku(Sku sku) {
+        this.sku = sku;
+    }
+    
+    public Sku getDefaultSku() {
+        return sku;
+    }
+    
+    public void setDefaultSku(Sku defaultSku){
+        this.sku = defaultSku;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = super.hashCode();
-		int result = super.hashCode();
-		result = prime * result + ((sku == null) ? 0 : sku.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        final int prime = super.hashCode();
+        int result = super.hashCode();
+        result = prime * result + ((sku == null) ? 0 : sku.hashCode());
+        return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		
-		ProductSkuImpl other = (ProductSkuImpl) obj;
-		
-		if (!super.equals(obj)) {
-			return false;
-		}
-		
-		if (id != null && other.id != null) {
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        
+        ProductSkuImpl other = (ProductSkuImpl) obj;
+        
+        if (!super.equals(obj)) {
+            return false;
+        }
+        
+        if (id != null && other.id != null) {
             return id.equals(other.id);
         }
-		
-		if (sku == null) {
-			if (other.sku != null)
-				return false;
-		} else if (!sku.equals(other.sku))
-			return false;
-		return true;
-	}
+        
+        if (sku == null) {
+            if (other.sku != null)
+                return false;
+        } else if (!sku.equals(other.sku))
+            return false;
+        return true;
+    }
     
 }

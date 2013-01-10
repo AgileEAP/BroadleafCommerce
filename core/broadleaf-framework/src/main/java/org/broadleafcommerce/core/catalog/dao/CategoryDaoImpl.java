@@ -182,10 +182,10 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public void delete(Category category){
-    	if (!em.contains(category)) {
-    		category = readCategoryById(category.getId());
-    	}
-        em.remove(category);    	
+        if (!em.contains(category)) {
+            category = readCategoryById(category.getId());
+        }
+        em.remove(category);        
     }
 
     @Override
@@ -194,11 +194,11 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     public Long getCurrentDateResolution() {
-		return currentDateResolution;
-	}
+        return currentDateResolution;
+    }
 
-	public void setCurrentDateResolution(Long currentDateResolution) {
-		this.currentDateResolution = currentDateResolution;
-	}
+    public void setCurrentDateResolution(Long currentDateResolution) {
+        this.currentDateResolution = currentDateResolution;
+    }
     
 }

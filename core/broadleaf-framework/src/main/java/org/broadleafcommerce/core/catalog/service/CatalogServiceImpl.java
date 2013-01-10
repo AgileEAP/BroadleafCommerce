@@ -92,7 +92,7 @@ public class CatalogServiceImpl implements CatalogService {
     }
     
     public void removeCategory(Category category){
-    	categoryDao.delete(category);
+        categoryDao.delete(category);
     }
 
     public List<Category> findAllCategories() {
@@ -179,14 +179,14 @@ public class CatalogServiceImpl implements CatalogService {
     }
     
     public Category createCategory() {
-    	return categoryDao.create();
+        return categoryDao.create();
     }
     
     public Sku createSku() {
-    	return skuDao.create();
+        return skuDao.create();
     }
     
     public Product createProduct(ProductType productType) {
-    	return productDao.create(productType);
+        return productDao.create(productType);
     }
 }

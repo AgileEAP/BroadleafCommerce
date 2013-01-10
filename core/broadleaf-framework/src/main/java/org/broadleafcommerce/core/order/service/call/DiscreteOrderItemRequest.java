@@ -48,12 +48,12 @@ public class DiscreteOrderItemRequest extends OrderItemRequest {
     }
 
 
-	public List<DiscreteOrderItemFeePrice> getDiscreteOrderItemFeePrices() {
-		return discreteOrderItemFeePrices;
-	}
+    public List<DiscreteOrderItemFeePrice> getDiscreteOrderItemFeePrices() {
+        return discreteOrderItemFeePrices;
+    }
 
-	public void setDiscreteOrderItemFeePrices(
-			List<DiscreteOrderItemFeePrice> discreteOrderItemFeePrices) {
-		this.discreteOrderItemFeePrices = discreteOrderItemFeePrices;
-	}
+    public void setDiscreteOrderItemFeePrices(
+            List<DiscreteOrderItemFeePrice> discreteOrderItemFeePrices) {
+        this.discreteOrderItemFeePrices = discreteOrderItemFeePrices;
+    }
 }

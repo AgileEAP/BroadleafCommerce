@@ -26,25 +26,25 @@ import java.math.BigDecimal;
 
 public class DefaultDynamicSkuPricingInvocationHandler implements InvocationHandler {
 
-	private Sku delegate;
-	private Money retailPrice;
-	private Money salePrice;
-	
-	public DefaultDynamicSkuPricingInvocationHandler(Sku sku) {
-		this.delegate = sku;
-		try {
-			Field retail = getSingleField(delegate.getClass(), "retailPrice");
-			retail.setAccessible(true);
-			Object retailVal = retail.get(delegate);
-			retailPrice = retailVal==null?null:new Money((BigDecimal) retailVal);
-			Field sale = getSingleField(delegate.getClass(), "salePrice");
-			sale.setAccessible(true);
-			Object saleVal = sale.get(delegate);
-			salePrice = saleVal==null?null:new Money((BigDecimal) saleVal);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+    private Sku delegate;
+    private Money retailPrice;
+    private Money salePrice;
+    
+    public DefaultDynamicSkuPricingInvocationHandler(Sku sku) {
+        this.delegate = sku;
+        try {
+            Field retail = getSingleField(delegate.getClass(), "retailPrice");
+            retail.setAccessible(true);
+            Object retailVal = retail.get(delegate);
+            retailPrice = retailVal==null?null:new Money((BigDecimal) retailVal);
+            Field sale = getSingleField(delegate.getClass(), "salePrice");
+            sale.setAccessible(true);
+            Object saleVal = sale.get(delegate);
+            salePrice = saleVal==null?null:new Money((BigDecimal) saleVal);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * This is used with SkuBundleItem to allow the bundle override price.
@@ -58,9 +58,9 @@ public class DefaultDynamicSkuPricingInvocationHandler implements InvocationHand
         if (salePriceOverride != null) {
             salePrice = new Money(salePriceOverride);
         }
-   	}
-	
-	private Field getSingleField(Class<?> clazz, String fieldName) throws IllegalStateException {
+    }
+    
+    private Field getSingleField(Class<?> clazz, String fieldName) throws IllegalStateException {
         try {
             return clazz.getDeclaredField(fieldName);
         } catch (NoSuchFieldException nsf) {
@@ -72,20 +72,20 @@ public class DefaultDynamicSkuPricingInvocationHandler implements InvocationHand
             return null;
         }
     }
-	
-	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		if (method.getName().equals("getRetailPrice")) {
-			return retailPrice;
-		} else if (method.getName().equals("getSalePrice")) {
-			return salePrice;
-		} else {
-			return method.invoke(delegate, args);
-		}
-	}
+    
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        if (method.getName().equals("getRetailPrice")) {
+            return retailPrice;
+        } else if (method.getName().equals("getSalePrice")) {
+            return salePrice;
+        } else {
+            return method.invoke(delegate, args);
+        }
+    }
 
-	public void reset() {
-		delegate = null;
-		retailPrice = null;
-		salePrice = null;
-	}
+    public void reset() {
+        delegate = null;
+        retailPrice = null;
+        salePrice = null;
+    }
 }

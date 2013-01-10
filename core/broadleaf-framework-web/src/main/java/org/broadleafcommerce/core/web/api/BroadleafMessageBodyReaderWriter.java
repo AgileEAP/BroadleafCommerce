@@ -78,16 +78,16 @@ public class BroadleafMessageBodyReaderWriter implements MessageBodyReader<Objec
     protected ApplicationContext applicationContext;
 
     @Context
-	protected Providers ps;
+    protected Providers ps;
 
-	@Context
-	protected Injectable<XMLInputFactory> xif;
+    @Context
+    protected Injectable<XMLInputFactory> xif;
 
     @Context
     protected Injectable<SAXParserFactory> spf;
 
     protected static XMLListElementProvider.App xmlListProvider;
-	protected static JSONListElementProvider.App jsonListProvider;
+    protected static JSONListElementProvider.App jsonListProvider;
     protected static XMLRootElementProvider.App xmlRootElementProvider;
     protected static JSONRootElementProvider.App jsonRootElementProvider;
 
@@ -108,10 +108,10 @@ public class BroadleafMessageBodyReaderWriter implements MessageBodyReader<Objec
     }
 
     @Override
-	public Object readFrom(Class<Object> type, Type genericType,
-			Annotation[] annotations, MediaType mediaType,
-			MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-			throws IOException, WebApplicationException {
+    public Object readFrom(Class<Object> type, Type genericType,
+            Annotation[] annotations, MediaType mediaType,
+            MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
+            throws IOException, WebApplicationException {
 
         initializeProviders();
 
@@ -147,13 +147,13 @@ public class BroadleafMessageBodyReaderWriter implements MessageBodyReader<Objec
             }
         }
 
-	    return null;
-	}
+        return null;
+    }
 
     @Override
-	public long getSize(Object t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
-		return -1;
-	}
+    public long getSize(Object t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return -1;
+    }
 
     @Override
     public void writeTo(
@@ -175,7 +175,7 @@ public class BroadleafMessageBodyReaderWriter implements MessageBodyReader<Objec
 
         if (mediaType.isCompatible(MediaType.APPLICATION_JSON_TYPE)) {
             if (Collection.class.isAssignableFrom(type)) {
-    		    jsonListProvider.writeTo(t, type, genericType, annotations, mediaType, httpHeaders, entityStream);
+                jsonListProvider.writeTo(t, type, genericType, annotations, mediaType, httpHeaders, entityStream);
             } else if(type.isArray()) {
                 // Since we've replaced  the genericType param with the correct implementation, we have to pass that as the first argument as well because
                 // if it's an array, the default list provider checks the componentType of only the first argument
@@ -183,9 +183,9 @@ public class BroadleafMessageBodyReaderWriter implements MessageBodyReader<Objec
             } else {
                 jsonRootElementProvider.writeTo(t, type, genericType, annotations, mediaType, httpHeaders, entityStream);
             }
-    	} else if (mediaType.isCompatible(MediaType.APPLICATION_XML_TYPE) || mediaType.isCompatible(MediaType.TEXT_XML_TYPE)) {
+        } else if (mediaType.isCompatible(MediaType.APPLICATION_XML_TYPE) || mediaType.isCompatible(MediaType.TEXT_XML_TYPE)) {
             if (Collection.class.isAssignableFrom(type)) {
-	    	    xmlListProvider.writeTo(t, type, genericType, annotations, mediaType, httpHeaders, entityStream);
+                xmlListProvider.writeTo(t, type, genericType, annotations, mediaType, httpHeaders, entityStream);
             } else if(type.isArray()) {
                 // Since we've replaced  the genericType param with the correct implementation, we have to pass that as the first argument as well because
                 // if it's an array, the default list provider checks the componentType of only the first argument
@@ -193,17 +193,17 @@ public class BroadleafMessageBodyReaderWriter implements MessageBodyReader<Objec
             } else {
                 xmlRootElementProvider.writeTo(t, type, genericType, annotations, mediaType, httpHeaders, entityStream);
             }
-    	}
+        }
     }
 
     private void initializeProviders() {
         if (jsonListProvider == null) {
-	    	jsonListProvider = new JSONListElementProvider.App(ps);
-	    }
+            jsonListProvider = new JSONListElementProvider.App(ps);
+        }
 
-	    if (xmlListProvider == null) {
-	    	xmlListProvider = new XMLListElementProvider.App(xif, ps);
-	    }
+        if (xmlListProvider == null) {
+            xmlListProvider = new XMLListElementProvider.App(xif, ps);
+        }
 
         if (xmlRootElementProvider == null) {
             xmlRootElementProvider = new XMLRootElementProvider.App(spf, ps);

@@ -39,11 +39,11 @@ public interface BundleOrderItem extends OrderItem {
 
     public Money getBaseRetailPrice();
 
-   	public void setBaseRetailPrice(Money baseRetailPrice);
+    public void setBaseRetailPrice(Money baseRetailPrice);
 
-   	public Money getBaseSalePrice();
+    public Money getBaseSalePrice();
 
-   	public void setBaseSalePrice(Money baseSalePrice);
+    public void setBaseSalePrice(Money baseSalePrice);
 
     /**
      * For BundleOrderItem created from a ProductBundle, this will represent the default sku of

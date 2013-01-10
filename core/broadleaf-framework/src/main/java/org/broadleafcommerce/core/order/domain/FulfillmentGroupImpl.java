@@ -222,9 +222,9 @@ public class FulfillmentGroupImpl implements FulfillmentGroup {
     }
     
     public List<DiscreteOrderItem> getDiscreteOrderItems() {
-    	List<DiscreteOrderItem> discreteOrderItems = new ArrayList<DiscreteOrderItem>();
+        List<DiscreteOrderItem> discreteOrderItems = new ArrayList<DiscreteOrderItem>();
         for (FulfillmentGroupItem fgItem : fulfillmentGroupItems) {
-        	OrderItem orderItem = fgItem.getOrderItem();
+            OrderItem orderItem = fgItem.getOrderItem();
             if (orderItem instanceof BundleOrderItemImpl) {
                 BundleOrderItemImpl bundleOrderItem = (BundleOrderItemImpl)orderItem;
                 for (DiscreteOrderItem discreteOrderItem : bundleOrderItem.getDiscreteOrderItems()) {
@@ -317,9 +317,9 @@ public class FulfillmentGroupImpl implements FulfillmentGroup {
     }
     
     public Money getFulfillmentGroupAdjustmentsValue() {
-    	Money adjustmentsValue = new Money(0);
+        Money adjustmentsValue = new Money(0);
         for (FulfillmentGroupAdjustment adjustment : fulfillmentGroupAdjustments) {
-        	adjustmentsValue = adjustmentsValue.add(adjustment.getValue());
+            adjustmentsValue = adjustmentsValue.add(adjustment.getValue());
         }
         return adjustmentsValue;
     }
@@ -370,30 +370,30 @@ public class FulfillmentGroupImpl implements FulfillmentGroup {
     }
     
     public Money getTotalItemTax() {
-		return totalItemTax == null ? null : new Money(totalItemTax);
-	}
+        return totalItemTax == null ? null : new Money(totalItemTax);
+    }
 
-	public void setTotalItemTax(Money totalItemTax) {
-		this.totalItemTax = Money.toAmount(totalItemTax);
-	}
+    public void setTotalItemTax(Money totalItemTax) {
+        this.totalItemTax = Money.toAmount(totalItemTax);
+    }
 
-	public Money getTotalFeeTax() {
-		return totalFeeTax == null ? null : new Money(totalFeeTax);
-	}
+    public Money getTotalFeeTax() {
+        return totalFeeTax == null ? null : new Money(totalFeeTax);
+    }
 
-	public void setTotalFeeTax(Money totalFeeTax) {
-		this.totalFeeTax = Money.toAmount(totalFeeTax);
-	}
+    public void setTotalFeeTax(Money totalFeeTax) {
+        this.totalFeeTax = Money.toAmount(totalFeeTax);
+    }
 
-	public Money getTotalFulfillmentGroupTax() {
-		return totalFulfillmentGroupTax == null ? null : new Money(totalFulfillmentGroupTax);
-	}
+    public Money getTotalFulfillmentGroupTax() {
+        return totalFulfillmentGroupTax == null ? null : new Money(totalFulfillmentGroupTax);
+    }
 
-	public void setTotalFulfillmentGroupTax(Money totalFulfillmentGroupTax) {
-		this.totalFulfillmentGroupTax = Money.toAmount(totalFulfillmentGroupTax);
-	}
+    public void setTotalFulfillmentGroupTax(Money totalFulfillmentGroupTax) {
+        this.totalFulfillmentGroupTax = Money.toAmount(totalFulfillmentGroupTax);
+    }
 
-	public String getDeliveryInstruction() {
+    public String getDeliveryInstruction() {
         return deliveryInstruction;
     }
 
@@ -463,22 +463,22 @@ public class FulfillmentGroupImpl implements FulfillmentGroup {
     }
 
     public Boolean isShippingPriceTaxable() {
-		return isShippingPriceTaxable;
-	}
+        return isShippingPriceTaxable;
+    }
 
-	public void setIsShippingPriceTaxable(Boolean isShippingPriceTaxable) {
-		this.isShippingPriceTaxable = isShippingPriceTaxable;
-	}
+    public void setIsShippingPriceTaxable(Boolean isShippingPriceTaxable) {
+        this.isShippingPriceTaxable = isShippingPriceTaxable;
+    }
 
-	public String getService() {
-		return service;
-	}
+    public String getService() {
+        return service;
+    }
 
-	public void setService(String service) {
-		this.service = service;
-	}
+    public void setService(String service) {
+        this.service = service;
+    }
 
-	public int hashCode() {
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((address == null) ? 0 : address.hashCode());

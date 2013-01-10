@@ -93,8 +93,8 @@ import java.util.Map;
 @XmlRootElement(name = "sku")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class SkuImpl implements Sku {
-	
-	private static final Log LOG = LogFactory.getLog(SkuImpl.class);
+    
+    private static final Log LOG = LogFactory.getLog(SkuImpl.class);
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
@@ -177,7 +177,7 @@ public class SkuImpl implements Sku {
     
     @Transient
     protected DynamicSkuPrices dynamicPrices = null;
-	
+    
     /** The sku images. */
     @CollectionOfElements
     @JoinTable(name = "BLC_SKU_IMAGE", joinColumns = @JoinColumn(name = "SKU_ID"))
@@ -229,20 +229,20 @@ public class SkuImpl implements Sku {
      */
     @XmlElement
     public Money getSalePrice() {
-    	if (dynamicPrices != null) {
-    		return dynamicPrices.getSalePrice();
-    	}
-    	if (
-    			SkuPricingConsiderationContext.getSkuPricingConsiderationContext() != null && 
-    			SkuPricingConsiderationContext.getSkuPricingConsiderationContext().size() > 0 &&
-    			SkuPricingConsiderationContext.getSkuPricingService() != null
-    	) {
-    		DefaultDynamicSkuPricingInvocationHandler handler = new DefaultDynamicSkuPricingInvocationHandler(this);
-    		Sku proxy = (Sku) Proxy.newProxyInstance(getClass().getClassLoader(), getClass().getInterfaces(), handler);
-    		dynamicPrices = SkuPricingConsiderationContext.getSkuPricingService().getSkuPrices(proxy, SkuPricingConsiderationContext.getSkuPricingConsiderationContext());
-    		handler.reset();
-    		return dynamicPrices.getSalePrice();
-    	} else {
+        if (dynamicPrices != null) {
+            return dynamicPrices.getSalePrice();
+        }
+        if (
+                SkuPricingConsiderationContext.getSkuPricingConsiderationContext() != null && 
+                SkuPricingConsiderationContext.getSkuPricingConsiderationContext().size() > 0 &&
+                SkuPricingConsiderationContext.getSkuPricingService() != null
+        ) {
+            DefaultDynamicSkuPricingInvocationHandler handler = new DefaultDynamicSkuPricingInvocationHandler(this);
+            Sku proxy = (Sku) Proxy.newProxyInstance(getClass().getClassLoader(), getClass().getInterfaces(), handler);
+            dynamicPrices = SkuPricingConsiderationContext.getSkuPricingService().getSkuPrices(proxy, SkuPricingConsiderationContext.getSkuPricingConsiderationContext());
+            handler.reset();
+            return dynamicPrices.getSalePrice();
+        } else {
             return salePrice == null ? null : new Money(salePrice);
         }
     }
@@ -262,20 +262,20 @@ public class SkuImpl implements Sku {
      */
     @XmlElement
     public Money getRetailPrice() {
-    	if (dynamicPrices != null) {
-    		return dynamicPrices.getRetailPrice();
-    	}
-    	if (
-    			SkuPricingConsiderationContext.getSkuPricingConsiderationContext() != null && 
-    			SkuPricingConsiderationContext.getSkuPricingConsiderationContext().size() > 0 &&
-    			SkuPricingConsiderationContext.getSkuPricingService() != null
-    	) {
-    		DefaultDynamicSkuPricingInvocationHandler handler = new DefaultDynamicSkuPricingInvocationHandler(this);
-    		Sku proxy = (Sku) Proxy.newProxyInstance(getClass().getClassLoader(), getClass().getInterfaces(), handler);
-    		dynamicPrices = SkuPricingConsiderationContext.getSkuPricingService().getSkuPrices(proxy, SkuPricingConsiderationContext.getSkuPricingConsiderationContext());
-    		handler.reset();
-    		return dynamicPrices.getRetailPrice();
-    	}
+        if (dynamicPrices != null) {
+            return dynamicPrices.getRetailPrice();
+        }
+        if (
+                SkuPricingConsiderationContext.getSkuPricingConsiderationContext() != null && 
+                SkuPricingConsiderationContext.getSkuPricingConsiderationContext().size() > 0 &&
+                SkuPricingConsiderationContext.getSkuPricingService() != null
+        ) {
+            DefaultDynamicSkuPricingInvocationHandler handler = new DefaultDynamicSkuPricingInvocationHandler(this);
+            Sku proxy = (Sku) Proxy.newProxyInstance(getClass().getClassLoader(), getClass().getInterfaces(), handler);
+            dynamicPrices = SkuPricingConsiderationContext.getSkuPricingService().getSkuPrices(proxy, SkuPricingConsiderationContext.getSkuPricingConsiderationContext());
+            handler.reset();
+            return dynamicPrices.getRetailPrice();
+        }
         return retailPrice == null ? null : new Money(retailPrice);
     }
 
@@ -439,7 +439,7 @@ public class SkuImpl implements Sku {
 
     @XmlTransient
     public Boolean getAvailable() {
-    	return isAvailable();
+        return isAvailable();
     }
 
     /*
@@ -578,21 +578,21 @@ public class SkuImpl implements Sku {
     }
 
     /**
-	 * @return the skuAttributes
-	 */
+     * @return the skuAttributes
+     */
     @XmlTransient
-	public List<SkuAttribute> getSkuAttributes() {
-		return skuAttributes;
-	}
+    public List<SkuAttribute> getSkuAttributes() {
+        return skuAttributes;
+    }
 
-	/**
-	 * @param skuAttributes the skuAttributes to set
-	 */
-	public void setSkuAttributes(List<SkuAttribute> skuAttributes) {
-		this.skuAttributes = skuAttributes;
-	}
+    /**
+     * @param skuAttributes the skuAttributes to set
+     */
+    public void setSkuAttributes(List<SkuAttribute> skuAttributes) {
+        this.skuAttributes = skuAttributes;
+    }
 
-	@Override
+    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
